@@ -23,7 +23,6 @@ namespace Mmt.MmtShop.Api.Tests
             mockCategories.Add(new Category { CategoryId = 4, CategoryName = "Fitness" });
             mockCategories.Add(new Category { CategoryId = 5, CategoryName = "Toys" });
 
-
             var mockLogger = new Mock<ILogger<ProductsController>>().Object;
             var mockProductService = Mock.Of<IProductService>(c => c.GetAllCategories() == mockCategories);
             productsController = new ProductsController(mockLogger, mockProductService);

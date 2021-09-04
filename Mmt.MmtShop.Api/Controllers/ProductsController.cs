@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Mmt.MmtShop.ProductService;
 using Mmt.MmtShop.ProductService.Models;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,18 @@ namespace Mmt.MmtShop.Api.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ILogger<ProductsController> _logger;
+        private readonly IProductService _productService;
 
-        public ProductsController(ILogger<ProductsController> logger)
+        public ProductsController(ILogger<ProductsController> logger, IProductService productService)
         {
             _logger = logger;
+            _productService = productService;
         }
 
         [HttpGet]
         public IList<Category> GetAllCategories()
         {
-            return null;
+            return _productService.GetAllCategories();
         }
     }
 }

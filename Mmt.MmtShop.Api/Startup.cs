@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Mmt.MmtShop.ProductService;
 
 namespace Mmt.MmtShop.Api
 {
@@ -33,6 +34,7 @@ namespace Mmt.MmtShop.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mmt.MmtShop.Api", Version = "v1" });
             });
             services.AddDbContext<ProductContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProductServiceDatabase")));
+            services.AddTransient<IProductService, ProductService.ProductService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -2,6 +2,9 @@ using Mmt.MmtShop.Api.Controllers;
 using Moq;
 using NUnit.Framework;
 using Microsoft.Extensions.Logging;
+using Mmt.MmtShop.ProductService;
+using Mmt.MmtShop.ProductService.Models;
+using System.Collections.Generic;
 
 namespace Mmt.MmtShop.Api.Tests
 {
@@ -13,8 +16,17 @@ namespace Mmt.MmtShop.Api.Tests
         [SetUp]
         public void Setup()
         {
+            IList<Category> mockCategories = new List<Category>();
+            mockCategories.Add(new Category { CategoryId = 1, CategoryName = "Home" });
+            mockCategories.Add(new Category { CategoryId = 2, CategoryName = "Garden" });
+            mockCategories.Add(new Category { CategoryId = 3, CategoryName = "Electronics" });
+            mockCategories.Add(new Category { CategoryId = 4, CategoryName = "Fitness" });
+            mockCategories.Add(new Category { CategoryId = 5, CategoryName = "Toys" });
+
+
             var mockLogger = new Mock<ILogger<ProductsController>>().Object;
-            productsController = new ProductsController(mockLogger);
+            var mockProductService = Mock.Of<IProductService>(c => c.GetAllCategories() == mockCategories);
+            productsController = new ProductsController(mockLogger, mockProductService);
         }
 
         [Test]
@@ -25,10 +37,10 @@ namespace Mmt.MmtShop.Api.Tests
         }
 
         [Test]
-        public void AtLeastOneCategoryIsReturned()
+        public void AllCategoriesAreReturned()
         {
             var categoryList = productsController.GetAllCategories();
-            Assert.IsTrue(categoryList.Count > 0);
+            Assert.AreEqual(5, categoryList.Count);
         }
     }
 }

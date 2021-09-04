@@ -10,5 +10,7 @@ namespace Mmt.MmtShop.ProductService
     public interface IProductService
     {
         IList<Category> GetAllCategories();
+        IList<Product> GetAllProducts();
+        IList<Product> GetAllProductsByCategory(int categoryId);
     }
 }

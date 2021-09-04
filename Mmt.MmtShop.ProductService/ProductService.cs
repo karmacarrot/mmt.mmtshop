@@ -21,5 +21,15 @@ namespace Mmt.MmtShop.ProductService
         {
             return _productContext.Categories.ToList();
         }
+
+        public IList<Product> GetAllProducts()
+        {
+            return _productContext.Products.ToList();
+        }
+
+        public IList<Product> GetAllProductsByCategory(int categoryId)
+        {
+            return _productContext.Products.Where<Product>(x => x.ProductCategoryId == categoryId).ToList();
+        }
     }
 }

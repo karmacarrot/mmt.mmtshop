@@ -14,5 +14,6 @@ namespace Mmt.MmtShop.ProductService.Models
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
         public decimal ProductPrice { get; set; }
+        public Int16 ProductCategoryId { get; set; }
     }
 }

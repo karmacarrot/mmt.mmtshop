@@ -27,5 +27,17 @@ namespace Mmt.MmtShop.Api.Controllers
         {
             return _productService.GetAllCategories();
         }
+
+        [HttpGet]
+        public IList<Product> GetAllProducts()
+        {
+            return _productService.GetAllProducts();
+        }
+
+        [HttpPost]
+        public IList<Product> GetAllProductsByCategory(Int16 CategoryId)
+        {
+            return _productService.GetAllProductsByCategory(CategoryId);
+        }
     }
 }

@@ -6,4 +6,8 @@
 	- Product name will never be more than 100 characters
 	- There will never be a requirement around auditing date added / modified for products
 	- All facets of a product will always be required / available 
-	- Unit tests can be run against a test database containing realistic data 
+
+
+#Future items for backlog
+	- Move connection string to pipeline / key vault etc
+	- Implement logging methods using preferred solution (application insights etc)

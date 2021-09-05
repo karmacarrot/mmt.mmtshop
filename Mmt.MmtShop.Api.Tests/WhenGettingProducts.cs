@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Mmt.MmtShop.ProductService;
 using Mmt.MmtShop.ProductService.Models;
 using System.Collections.Generic;
+using System;
 
 namespace Mmt.MmtShop.Api.Tests
 {
@@ -27,21 +28,43 @@ namespace Mmt.MmtShop.Api.Tests
             mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 8", ProductPrice = 9.99m, ProductSKU = 50000 });
 
             var mockLogger = new Mock<ILogger<ProductsController>>().Object;
-            var mockProductService = Mock.Of<IProductService>(c => c.GetAllProducts() == mockProducts);
+            var mockProductService = Mock.Of<IProductService>(c => c.GetAllProducts() == mockProducts && c.GetAllProductsByCategory(It.IsAny<Int16>()) == mockProducts);
+        
             productsController = new ProductsController(mockLogger, mockProductService);
         }
 
         [Test]
-        public void ProductsListIsNotNull()
+        public void ProductsListIsNotNullWhenPassingZero()
         {
-            var productList = productsController.GetAllProducts();
+            var productList = productsController.GetProducts(0);
             Assert.IsNotNull(productList);
         }
 
         [Test]
-        public void AllProductsAreReturnedWhenRequested()
+        public void AllProductsAreReturnedWhenPassingZero()
         {
-            var productList = productsController.GetAllProducts();
+            var productList = productsController.GetProducts(0);
+            Assert.AreEqual(8, productList.Count);
+        }
+
+        [Test]
+        public void ProductsListIsNotNullWhenPassingNull()
+        {
+            var productList = productsController.GetProducts();
+            Assert.IsNotNull(productList);
+        }
+
+        [Test]
+        public void AllProductsAreReturnedWhenPassingNull()
+        {
+            var productList = productsController.GetProducts();
+            Assert.AreEqual(8, productList.Count);
+        }
+
+        [Test]
+        public void ProductsAreReturnedWhenPassingCategoryOne()
+        {
+            var productList = productsController.GetProducts(1);
             Assert.AreEqual(8, productList.Count);
         }
     }

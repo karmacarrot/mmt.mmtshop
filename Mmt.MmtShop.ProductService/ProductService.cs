@@ -27,7 +27,7 @@ namespace Mmt.MmtShop.ProductService
             return _productContext.Products.ToList();
         }
 
-        public IList<Product> GetAllProductsByCategory(int categoryId)
+        public IList<Product> GetAllProductsByCategory(Int16 categoryId)
         {
             return _productContext.Products.Where<Product>(x => x.ProductCategoryId == categoryId).ToList();
         }

@@ -11,7 +11,7 @@ namespace Mmt.MmtShop.Api.Tests
     public class WhenGettingCategories
     {
 
-        ProductsController productsController;
+        CategoriesController categoriesController;
 
         [SetUp]
         public void Setup()
@@ -23,22 +23,22 @@ namespace Mmt.MmtShop.Api.Tests
             mockCategories.Add(new Category { CategoryId = 4, CategoryName = "Fitness" });
             mockCategories.Add(new Category { CategoryId = 5, CategoryName = "Toys" });
 
-            var mockLogger = new Mock<ILogger<ProductsController>>().Object;
+            var mockLogger = new Mock<ILogger<CategoriesController>>().Object;
             var mockProductService = Mock.Of<IProductService>(c => c.GetAllCategories() == mockCategories);
-            productsController = new ProductsController(mockLogger, mockProductService);
+            categoriesController = new CategoriesController(mockLogger, mockProductService);
         }
 
         [Test]
         public void CategoriesListIsNotNull()
         {
-            var categoryList = productsController.GetAllCategories();
+            var categoryList = categoriesController.GetAllCategories();
             Assert.IsNotNull(categoryList);
         }
 
         [Test]
         public void AllCategoriesAreReturned()
         {
-            var categoryList = productsController.GetAllCategories();
+            var categoryList = categoriesController.GetAllCategories();
             Assert.AreEqual(5, categoryList.Count);
         }
     }

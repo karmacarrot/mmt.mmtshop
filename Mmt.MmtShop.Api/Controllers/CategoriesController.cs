@@ -11,25 +11,21 @@ namespace Mmt.MmtShop.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductsController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        private readonly ILogger<ProductsController> _logger;
+        private readonly ILogger<CategoriesController> _logger;
         private readonly IProductService _productService;
 
-        public ProductsController(ILogger<ProductsController> logger, IProductService productService)
+        public CategoriesController(ILogger<CategoriesController> logger, IProductService productService)
         {
             _logger = logger;
             _productService = productService;
         }
 
         [HttpGet]
-        public IList<Product> GetProducts(Int16? categoryId = null)
+        public IList<Category> GetAllCategories()
         {
-            if (categoryId is null || categoryId == 0)
-            {
-                return _productService.GetAllProducts();
-            }
-            return _productService.GetAllProductsByCategory((Int16)categoryId);
+            return _productService.GetAllCategories();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Mmt.MmtShop.ProductService
     {
         IList<Category> GetAllCategories();
         IList<Product> GetAllProducts();
-        IList<Product> GetAllProductsByCategory(Int16 categoryId);
+        IList<Product> GetAllProductsByCategory(Int32 categoryId);
+        IList<Product> GetAllFeaturedProducts();
     }
 }

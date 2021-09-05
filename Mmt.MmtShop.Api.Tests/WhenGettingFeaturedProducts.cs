@@ -9,10 +9,10 @@ using System;
 
 namespace Mmt.MmtShop.Api.Tests
 {
-    public class WhenGettingProducts
+    public class WhenGettingFeaturedProducts
     {
 
-        ProductsController productsController;
+        PromotionsController promotionsController;
 
         [SetUp]
         public void Setup()
@@ -27,44 +27,23 @@ namespace Mmt.MmtShop.Api.Tests
             mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 7", ProductPrice = 9.99m, ProductSKU = 50000, CategoryId = 5 });
             mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 8", ProductPrice = 9.99m, ProductSKU = 50000, CategoryId = 5 });
 
-            var mockLogger = new Mock<ILogger<ProductsController>>().Object;
-            var mockProductService = Mock.Of<IProductService>(c => c.GetAllProducts() == mockProducts && c.GetAllProductsByCategory(It.IsAny<Int32>()) == mockProducts);
-        
-            productsController = new ProductsController(mockLogger, mockProductService);
+            var mockLogger = new Mock<ILogger<PromotionsController>>().Object;
+            var mockProductService = Mock.Of<IProductService>(c => c.GetAllProducts() == mockProducts && c.GetAllFeaturedProducts() == mockProducts);
+
+            promotionsController = new PromotionsController(mockLogger, mockProductService);
         }
 
         [Test]
-        public void ProductsListIsNotNullWhenPassingZero()
+        public void FeaturedProductsListIsNotNull()
         {
-            var productList = productsController.GetProducts(0);
+            var productList = promotionsController.GetFeaturedProducts();
             Assert.IsNotNull(productList);
         }
 
         [Test]
-        public void AllProductsAreReturnedWhenPassingZero()
+        public void AllFeaturedProductsAreReturned()
         {
-            var productList = productsController.GetProducts(0);
-            Assert.AreEqual(8, productList.Count);
-        }
-
-        [Test]
-        public void ProductsListIsNotNullWhenPassingNull()
-        {
-            var productList = productsController.GetProducts();
-            Assert.IsNotNull(productList);
-        }
-
-        [Test]
-        public void AllProductsAreReturnedWhenPassingNull()
-        {
-            var productList = productsController.GetProducts();
-            Assert.AreEqual(8, productList.Count);
-        }
-
-        [Test]
-        public void ProductsAreReturnedWhenPassingCategoryOne()
-        {
-            var productList = productsController.GetProducts(1);
+            var productList = promotionsController.GetFeaturedProducts();
             Assert.AreEqual(8, productList.Count);
         }
     }

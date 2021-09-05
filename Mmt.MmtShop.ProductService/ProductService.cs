@@ -27,9 +27,14 @@ namespace Mmt.MmtShop.ProductService
             return _productContext.Products.ToList();
         }
 
-        public IList<Product> GetAllProductsByCategory(Int16 categoryId)
+        public IList<Product> GetAllProductsByCategory(Int32 categoryId)
         {
-            return _productContext.Products.Where<Product>(x => x.ProductCategoryId == categoryId).ToList();
+            return _productContext.Products.Where<Product>(x => x.CategoryId == categoryId).ToList();
+        }
+
+        public IList<Product> GetAllFeaturedProducts()
+        {
+            return _productContext.Products.Where<Product>(x => x.ProductCategory.IsFeatured).ToList();
         }
     }
 }

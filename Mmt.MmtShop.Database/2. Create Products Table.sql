@@ -1,7 +1,7 @@
 USE [MMTShop]
 GO
 
-/****** Object:  Table [dbo].[Products]    Script Date: 04/09/2021 15:54:05 ******/
+/****** Object:  Table [dbo].[Products]    Script Date: 05/09/2021 19:16:02 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Products](
 	[ProductName] [nvarchar](100) NOT NULL,
 	[ProductDescription] [nvarchar](max) NOT NULL,
 	[ProductPrice] [decimal](19, 4) NOT NULL,
-	[ProductCategoryId] [smallint] NOT NULL,
+	[CategoryId] [int] NOT NULL,
  CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
 (
 	[ProductSKU] ASC

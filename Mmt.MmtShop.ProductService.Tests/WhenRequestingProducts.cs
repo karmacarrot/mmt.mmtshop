@@ -17,15 +17,16 @@ namespace Mmt.MmtShop.ProductService.Tests
         [SetUp]
         public void Setup()
         {
+
             var testProducts = new List<Product> {
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 1", ProductPrice = 9.99m, ProductSKU = 10000, ProductCategoryId = 1 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 2", ProductPrice = 9.99m, ProductSKU = 20000, ProductCategoryId = 2 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 3", ProductPrice = 9.99m, ProductSKU = 30000, ProductCategoryId = 3 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 4", ProductPrice = 9.99m, ProductSKU = 40000, ProductCategoryId = 4 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 5", ProductPrice = 9.99m, ProductSKU = 40000, ProductCategoryId = 4 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 6", ProductPrice = 9.99m, ProductSKU = 50000, ProductCategoryId = 5 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 7", ProductPrice = 9.99m, ProductSKU = 50000, ProductCategoryId = 5 },
-                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 8", ProductPrice = 9.99m, ProductSKU = 50000, ProductCategoryId = 5 }
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 1", ProductPrice = 9.99m, ProductSKU = 10000, CategoryId = 1, ProductCategory = new Category { CategoryId=1, CategoryName="Test", IsFeatured=false } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 2", ProductPrice = 9.99m, ProductSKU = 20000, CategoryId = 2, ProductCategory = new Category { CategoryId=2, CategoryName="Test", IsFeatured=false } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 3", ProductPrice = 9.99m, ProductSKU = 30000, CategoryId = 3, ProductCategory = new Category { CategoryId=3, CategoryName="Test", IsFeatured=false } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 4", ProductPrice = 9.99m, ProductSKU = 40000, CategoryId = 4, ProductCategory = new Category { CategoryId=4, CategoryName="Test", IsFeatured=true } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 5", ProductPrice = 9.99m, ProductSKU = 40000, CategoryId = 4, ProductCategory = new Category { CategoryId=4, CategoryName="Test", IsFeatured=true } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 6", ProductPrice = 9.99m, ProductSKU = 50000, CategoryId = 5, ProductCategory = new Category { CategoryId=5, CategoryName="Test", IsFeatured=false } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 7", ProductPrice = 9.99m, ProductSKU = 50000, CategoryId = 5, ProductCategory = new Category { CategoryId=5, CategoryName="Test", IsFeatured=false } },
+                new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 8", ProductPrice = 9.99m, ProductSKU = 50000, CategoryId = 5, ProductCategory = new Category { CategoryId=5, CategoryName="Test", IsFeatured=false } }
             }.AsQueryable();
 
             var mockProductContext = new Mock<ProductContext>();
@@ -72,6 +73,15 @@ namespace Mmt.MmtShop.ProductService.Tests
         {
             var products = productService.GetAllProductsByCategory(5);
             Assert.AreEqual(3, products.Count);
+        }
+
+        [Test]
+        public void ProductsListFiltersByFeaturedWhenRequestedViaService()
+        {
+            var products = productService.GetAllFeaturedProducts();
+            Assert.AreEqual(2, products.Count);
+            Assert.AreEqual(4, products[0].CategoryId);
+            Assert.AreEqual(4, products[1].CategoryId);
         }
     }
 }

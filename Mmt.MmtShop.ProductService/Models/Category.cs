@@ -6,8 +6,9 @@ namespace Mmt.MmtShop.ProductService.Models
     public class Category
     {
         [Key]
-        public Int16 CategoryId { get; set; }
+        public Int32 CategoryId { get; set; }
 
         public string CategoryName { get; set; }
+        public bool IsFeatured { get; set; }
     }
 }

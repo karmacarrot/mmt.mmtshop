@@ -1,7 +1,7 @@
 USE [MMTShop]
 GO
 
-/****** Object:  Trigger [dbo].[InsertProduct]    Script Date: 04/09/2021 16:00:14 ******/
+/****** Object:  Trigger [dbo].[InsertProduct]    Script Date: 05/09/2021 18:48:43 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +11,7 @@ GO
 CREATE TRIGGER [dbo].[InsertProduct] ON [dbo].[Products] 
 INSTEAD OF INSERT 
 AS
-INSERT INTO dbo.Products (ProductSKU, ProductName, ProductDescription, ProductPrice, ProductCategoryId)
+INSERT INTO dbo.Products (ProductSKU, ProductName, ProductDescription, ProductPrice, CategoryId)
 SELECT ProductSKU, ProductName, ProductDescription, ProductPrice, LEFT(TRIM(STR(ProductSKU)), 1)
   FROM inserted
 

@@ -25,6 +25,8 @@ namespace Mmt.MmtShop.ApiConsole
             await GetApiResponse(client, "Products");
             Console.WriteLine("###GET all home products..." + Environment.NewLine + Environment.NewLine);
             await GetApiResponse(client, "Products?categoryID=1");
+            Console.WriteLine("###GET all featured products..." + Environment.NewLine + Environment.NewLine);
+            await GetApiResponse(client, "Promotions");
         }
 
 

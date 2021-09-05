@@ -37,7 +37,6 @@ namespace Mmt.MmtShop.ProductService.Tests
 
             mockProductContext.Setup(x => x.Products).Returns(mockSet.Object);
             productService = new ProductService(mockProductContext.Object);
-
         }
 
         [Test]

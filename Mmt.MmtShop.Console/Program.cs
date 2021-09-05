@@ -19,8 +19,12 @@ namespace Mmt.MmtShop.ApiConsole
                new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("User-Agent", "MMT Shop Console API Test App");
 
-            Console.WriteLine("GET all categories...");
+            Console.WriteLine("###GET all categories..." + Environment.NewLine + Environment.NewLine);
             await GetApiResponse(client, "Categories");
+            Console.WriteLine("###GET all products..." + Environment.NewLine + Environment.NewLine);
+            await GetApiResponse(client, "Products");
+            Console.WriteLine("###GET all home products..." + Environment.NewLine + Environment.NewLine);
+            await GetApiResponse(client, "Products?categoryID=1");
         }
 
 
@@ -28,7 +32,7 @@ namespace Mmt.MmtShop.ApiConsole
         {
             var getTask = client.GetStringAsync("https://localhost:44324/" + path);
             var jsonResponse = await getTask;
-            Console.Write(jsonResponse);
+            Console.Write(jsonResponse + Environment.NewLine + Environment.NewLine);
         }
     }
 }

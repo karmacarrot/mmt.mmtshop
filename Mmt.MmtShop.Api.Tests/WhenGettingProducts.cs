@@ -18,14 +18,14 @@ namespace Mmt.MmtShop.Api.Tests
         public void Setup()
         {
             IList<Product> mockProducts = new List<Product>();
-            mockProducts.Add(new Product {  ProductDescription="This is a test product!", ProductName="Test Product 1", ProductPrice=9.99m, ProductSKU=10000  });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 2", ProductPrice = 9.99m, ProductSKU = 20000 });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 3", ProductPrice = 9.99m, ProductSKU = 30000 });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 4", ProductPrice = 9.99m, ProductSKU = 40000 });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 5", ProductPrice = 9.99m, ProductSKU = 40000 });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 6", ProductPrice = 9.99m, ProductSKU = 50000 });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 7", ProductPrice = 9.99m, ProductSKU = 50000 });
-            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 8", ProductPrice = 9.99m, ProductSKU = 50000 });
+            mockProducts.Add(new Product {  ProductDescription="This is a test product!", ProductName="Test Product 1", ProductPrice=9.99m, ProductSKU=10000, ProductCategoryId=1  });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 2", ProductPrice = 9.99m, ProductSKU = 20000, ProductCategoryId = 2 });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 3", ProductPrice = 9.99m, ProductSKU = 30000, ProductCategoryId = 3 });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 4", ProductPrice = 9.99m, ProductSKU = 40000, ProductCategoryId = 4 });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 5", ProductPrice = 9.99m, ProductSKU = 40000, ProductCategoryId = 4 });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 6", ProductPrice = 9.99m, ProductSKU = 50000, ProductCategoryId = 5 });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 7", ProductPrice = 9.99m, ProductSKU = 50000, ProductCategoryId = 5 });
+            mockProducts.Add(new Product { ProductDescription = "This is a test product!", ProductName = "Test Product 8", ProductPrice = 9.99m, ProductSKU = 50000, ProductCategoryId = 5 });
 
             var mockLogger = new Mock<ILogger<ProductsController>>().Object;
             var mockProductService = Mock.Of<IProductService>(c => c.GetAllProducts() == mockProducts && c.GetAllProductsByCategory(It.IsAny<Int16>()) == mockProducts);

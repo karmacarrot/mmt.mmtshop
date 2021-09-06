@@ -2,6 +2,7 @@
 Setup:
 	- Restore any missing nuget packages
 	- Run SQL scripts in mmt.mmtshop\Mmt.MmtShop.Database
+	- Change ProductServiceDatabase connection string in appsettings.json to your local db instance
 	- Run web api project (Mmt.MmtShop.Api) on: https://localhost:44324
 	- Run all tests (16 in total, should all pass)
 	- Run console app (Mmt.MmtShop.ApiConsole) 
